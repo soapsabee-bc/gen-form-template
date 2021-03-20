@@ -11,7 +11,7 @@ const initTemplate = (ele,container,) => {
             stencilSetId: 0,
             referenceId: null,
             formDefinition: {
-                tabs: [] || [...ele.tabs],
+                tabs: ele.tabs || [],
                 fields: [
                     ...container
                 ]
