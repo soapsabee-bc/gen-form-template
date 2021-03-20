@@ -33,8 +33,19 @@ template.container(
         template.container(
             [ 
                 [ template.tableTwo({id:"test2",name:"test2"})],
-               
+                
+                // [ template.dropdown({id:"test2",name:"test2",options:[
+                //     {}
+                // ]})]
             ],"test2") 
+            ,
+            template.container(
+                [ 
+                    
+                    [ template.date({id:"test2",name:"test2"})],
+                    
+                    
+                ],"test2") 
 
 ])
 
