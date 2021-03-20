@@ -1,80 +1,26 @@
-const template = require('./template.js')
 const fs = require('fs')
 const express = require("express");
-const path = require('path') // เรียกใช้งาน path module
+const path = require('path')
+const glob = require("glob")
+
 
 var app = express ( );
 app.set('views', path.join(__dirname, 'views'));
 app.set ( "view engine", "ejs" );
 
+let mods = glob.sync('./mockHere/*.js').map( file => {
+   return file
+});
+let xs = mods.map(require);
 
-let test = template.initTemplate(
-{ 
-    
-    name: "test123",
-    tabs: [
-        template.tabs({id:"test",title:"test"}),
-        template.tabs({id:"test2",title:"test2"})
-
-    ]
-
-
-},[
-template.container(
-    [ 
-        [ template.textFieldCustom({id:"test",name:"test",required:true}),template.textFieldCustom({id:"test",name:"test"}) ],
-       
-    ],"test") ,
-    template.container(
-        [ 
-            [ template.tableTwo({id:"test2",name:"test2"})],
-           
-        ],"test") ,
-        template.container(
-            [ 
-                [ template.tableTwo({id:"test2",name:"test2"})],
-                
-                // [ template.dropdown({id:"test2",name:"test2",options:[
-                //     {}
-                // ]})]
-            ],"test2") 
-            ,
-            template.container(
-                [ 
-                    
-                    [ template.date({id:"test2",name:"test2"})],
-                    
-                    
-                ],"test2") 
-
-])
-
-
-
-
-app.get ( "/", function ( req, res ) 
+ console.log(xs)
+  
+app.get ( "/a01", function ( req, res ) 
 	{
-		res.render ( "preview.ejs" , { template : test});		
-        console.log(test)
+		res.render ( "preview.ejs" , { template : xs[0].preview()});		
 
 	}
 )
-
-// let test = template.initTemplate(
-// { name: "test123" },[
-// template.container(
-//     [ 
-//         [ template.textFieldCustom({id:"test",name:"test",required:true}),template.textFieldCustom({id:"test",name:"test"}) ],
-       
-//     ]) ,
-//     template.container(
-//         [ 
-//             [ template.tableTwo({id:"test2",name:"test2"})],
-           
-//         ]) 
-
-// ])
-
 
 // const jsonString = JSON.stringify(test)
 // fs.writeFile('./newCustomer.json', jsonString, err => {

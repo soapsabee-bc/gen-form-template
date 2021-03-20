@@ -7,20 +7,161 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
   </head>
 
 <body>
-    
+  <nav class="navbar navbar-expand-sm bg-info navbar-dark">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="Form05.html">Task</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Processes</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="#">+ START</a>
+        </li>
+    </ul>
+</nav>
+<div class="d-flex mb-3 ">
+<div class="p-1 ">
+  <center>
+      <p class="text-muted">
+          </t><i class="fas fa-filter text-muted"></i>New Filter</p>
+      <hr>
+      <h4><i class="fas fa-random"></i></h4>
+      <h6><small>RUNNING</small></h6>
+      <h4><i class="fas fa-check-circle"></i></h4>
+      <h6><small>COMPLETED</small></h6>
+      <h4><i class="fas fa-th"></i></h4>
+      <h6><small>ALL</small></h6>
+  </center>
+</div>
     <div class="container">
-      <% if(template["formDefinition"]["tabs"].length == 0) { %> 
+      <% if(template["formDefinition"]["tabs"].length == 0 ) { %> 
       <% template["formDefinition"]["fields"].forEach((element) => { %>
         <%  let i = 0 %>
           <div class="row">
             <% element["fields"][i].forEach(ele => { %> 
               
-                <div class="col-sm" style="border: solid; height: 40px ; ">
-                  <div><%= ele.id %></div>
+              <div class="col-sm" >
+                <% if(ele.type === "text_input_custom") {%>
+                  
+                      <label for="<%= ele.id %>"><%= ele.name %></label>
+                      <input id="<%= ele.id %> " style="width: 100%;" type="text">
+                  
+                  <% } %> 
+                  <% if(ele.type === "table"  ) {%>
+                  
+                    <table class="table table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">First</th>
+                          <th scope="col">Last</th>
+                          <th scope="col">Handle</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">2</th>
+                          <td>Jacob</td>
+                          <td>Thornton</td>
+                          <td>@fat</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">3</th>
+                          <td colspan="2">Larry the Bird</td>
+                          <td>@twitter</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                
+                <% } %> 
+
+                <% if(ele.type === "dropdown") {%>
+                  
+                  <div class="dropdown" style="width: 100%;">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown button
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
+              
+              <% } %> 
+
+              <% if(ele.type === "date"  ) {%>
+                <label for="<%= ele.id %>"><%= ele.name %></label>
+                <input id="<%= ele.id %> " style="width: 100%;" type="date">
+
+            <% } %> 
+
+            <% if(ele.type === "group"  ) {%>
+              <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">Fluid jumbotron</h1>
                 </div>
+              </div>
+          <% } %> 
+
+          <% if(ele.type === "upload"  ) {%>
+            <label for="<%= ele.id %>"><%= ele.name %></label>
+            <input id="<%= ele.id %> " style="width: 100%;" type="file">
+
+        <% } %> 
+           
+        <% if(ele.type === "readonly" ) {%>
+          <label for="<%= ele.id %>"><%= ele.name %></label>
+          <div id="<%= ele.id %> ">Display Value...</div>
+      <% } %> 
+
+      <% if(ele.type === "readonly-text"  ) {%>
+        <label for="<%= ele.id %>"><%= ele.name %></label>
+        <div id="<%= ele.id %> "><%= ele.value %></div>
+    <% } %> 
+
+    <% if(ele.type === "button" ) {%>
+      <button class="btn btn-primary" type="submit">Button</button>
+
+  <% } %> 
+
+  <% if(ele.type === "number_input" ) {%>
+    <label for="<%= ele.id %>"><%= ele.name %></label>
+    <input id="<%= ele.id %> " style="width: 100%;" type="text" placeholder="Number Input">
+
+<% } %> 
+
+  
+    
+
+              </div>
                 <%  i++ %>
             <% }) %>
 
@@ -110,6 +251,43 @@
 
                 <% } %> 
 
+                <% if(ele.type === "group" && element2["tab"] == element.id ) {%>
+                  <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                      <h1 class="display-4">Fluid jumbotron</h1>
+                    </div>
+                  </div>
+              <% } %> 
+
+              <% if(ele.type === "upload" && element2["tab"] == element.id ) {%>
+                <label for="<%= ele.id %>"><%= ele.name %></label>
+                <input id="<%= ele.id %> " style="width: 100%;" type="file">
+
+            <% } %> 
+               
+            <% if(ele.type === "readonly" && element2["tab"] == element.id ) {%>
+              <label for="<%= ele.id %>"><%= ele.name %></label>
+              <div id="<%= ele.id %> ">Display Value...</div>
+          <% } %> 
+
+          <% if(ele.type === "readonly-text" && element2["tab"] == element.id ) {%>
+            <label for="<%= ele.id %>"><%= ele.name %></label>
+            <div id="<%= ele.id %> "><%= ele.value %></div>
+        <% } %> 
+
+        <% if(ele.type === "button" && element2["tab"] == element.id ) {%>
+          <button class="btn btn-primary" type="submit">Button</button>
+
+      <% } %> 
+
+      <% if(ele.type === "number_input" && element2["tab"] == element.id ) {%>
+        <label for="<%= ele.id %>"><%= ele.name %></label>
+        <input id="<%= ele.id %> " style="width: 100%;" type="text" placeholder="Number Input">
+
+    <% } %> 
+    
+      
+        
 
                   </div>
                   <%  i++ %>
@@ -130,7 +308,7 @@
 
 
     </div>
-
+  </div>
      
 </body>
 </html>

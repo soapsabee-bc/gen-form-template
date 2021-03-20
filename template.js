@@ -1,4 +1,4 @@
-const initTemplate = (ele,container,) => {
+const initTemplate = (ele,container) => {
 
     let init  = {
             id: null,
