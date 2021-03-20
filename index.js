@@ -2,42 +2,8 @@ const template = require('./template.js')
 const fs = require('fs')
 
 
-const initTemplate = (ele,container) => {
 
-    let init  = {
-            id: null,
-            name: ele.name,
-            description: "",
-            version: null,
-            lastUpdatedBy: null,
-            lastUpdatedByFullName: null,
-            lastUpdated: null,
-            stencilSetId: 0,
-            referenceId: null,
-            formDefinition: {
-                tabs: [],
-                fields: [
-                    ...container
-                ]
-                ,
-                outcomes: [],
-                javascriptEvents: [],
-                className: "",
-                style: "",
-                customFieldTemplates: {},
-                metadata: {},
-                variables: [],
-                customFieldsValueInfo: {},
-                gridsterForm: false
-            }
-        
-}
-
-    return init
-
-}
- 
-let test = initTemplate(
+let test = template.initTemplate(
 { name: "test123" },[
 template.container(
     [ 
