@@ -1,7 +1,7 @@
  
  const template = require('../template.js')
 
- const preview = () => {
+const preview = () => {
 
     let test = template.initTemplate(
         { 
@@ -44,5 +44,6 @@
 }
 
 module.exports = {
+
     preview
-}
+} 

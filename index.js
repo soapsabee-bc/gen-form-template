@@ -1,23 +1,19 @@
 const fs = require('fs')
 const express = require("express");
 const path = require('path')
-const glob = require("glob")
+const mockHere = require("./mockHere")
 
 
 var app = express ( );
 app.set('views', path.join(__dirname, 'views'));
 app.set ( "view engine", "ejs" );
 
-let mods = glob.sync('./mockHere/*.js').map( file => {
-   return file
-});
-let xs = mods.map(require);
 
- console.log(xs)
+
   
 app.get ( "/a01", function ( req, res ) 
 	{
-		res.render ( "preview.ejs" , { template : xs[0].preview()});		
+		res.render ( "preview.ejs" , { template : mockHere.a.a()});		
 
 	}
 )
